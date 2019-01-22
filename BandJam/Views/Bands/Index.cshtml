@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Band>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2> all the bands BZVB
+    </h2>
+
+@foreach(var band in Model)
+{
+    <h1>@band.BandName</h1>
+}
