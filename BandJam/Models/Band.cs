@@ -10,7 +10,7 @@ namespace BandJam.Models
 {   
     public class Band
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        
         [Required]
         public int Id { get; set; }
         [Required]

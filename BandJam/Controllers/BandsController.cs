@@ -9,9 +9,11 @@ using BandJam.Models;
 using System.Web;
 using Microsoft.AspNetCore.Authorization;
 using BandJam.Data;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace BandJam.Controllers
 {
+    [BindRequired] 
     public class BandsController : Controller
     {
         private ApplicationDbContext _context { get; set; }
@@ -37,7 +39,8 @@ namespace BandJam.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create([Bind(Include = "ID,BandName,Genre,Bandsize,Experience,BandMembers,Bio,Email")] Band band)
+
+        public ActionResult Create( Band band)
         {
             if (ModelState.IsValid)
             {
@@ -54,18 +57,18 @@ namespace BandJam.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return BadRequest();
             }
             Band band = _context.Bands.Find(id);
             if (band == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
             return View(band);
         }
         //Post: Band/Edit
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "ID,BandName,Genre,Bandsize,Experience,BandMembers,Bio,Email")] Band band)
+        public ActionResult Edit( Band band)
 
         {
 
@@ -91,3 +94,5 @@ namespace BandJam.Controllers
         }
     }
 }
+//[Bind(Include = "ID,BandName,Genre,Bandsize,Experience,BandMembers,Bio,Email")]
+//[Bind(Include = "ID,BandName,Genre,Bandsize,Experience,BandMembers,Bio,Email")] 

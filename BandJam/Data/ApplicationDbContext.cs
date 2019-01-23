@@ -17,7 +17,7 @@ namespace BandJam.Data
         public DbSet<Band> Bands { get; set; }
         public DbSet<BandMember> BandMembers { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
-
+        public DbSet<BandMemberBand> BandMemberBands { get; set; }
 
 
         
