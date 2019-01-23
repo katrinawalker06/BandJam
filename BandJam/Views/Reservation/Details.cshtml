@@ -1,0 +1,67 @@
+﻿@model BandJam.Models.Band
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Band</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BandName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BandName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RequestId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Genre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Genre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BandSize)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BandSize)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Experience)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Experience)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BandMembers)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BandMembers)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bio)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bio)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
