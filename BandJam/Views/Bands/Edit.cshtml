@@ -33,15 +33,20 @@
                 <input asp-for="BandSize" class="form-control" />
                 <span asp-validation-for="BandSize" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="RequestId" class="control-label"></label>
-                <input asp-for="RequestId" class="form-control" />
-                <span asp-validation-for="RequestId" class="text-danger"></span>
-            </div>
+            @*<div class="form-group">
+            <label asp-for="RequestId" class="control-label"></label>
+            <input asp-for="RequestId" class="form-control" />
+            <span asp-validation-for="RequestId" class="text-danger"></span>
+        </div>*@
             <div class="form-group">
                 <label asp-for="Experience" class="control-label"></label>
                 <input asp-for="Experience" class="form-control" />
                 <span asp-validation-for="Experience" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BandMembers" class="control-label"></label>
+                <input asp-for="BandMembers" class="form-control" />
+                <span asp-validation-for="BandMembers" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Bio" class="control-label"></label>

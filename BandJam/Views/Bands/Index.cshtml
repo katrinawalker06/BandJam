@@ -1,15 +1,77 @@
 ﻿@model IEnumerable<Band>
+
+
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+    ViewData["Title"] = "Index";}
+
+<h2>Bands</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.BandName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BandSize)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Experience)
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var band in Model)
+        {
+            <tr>
+                <td>
+                        <a asp-controller="Bands" asp-action="Details" asp-route-id="@band.Id" title="Go to Band details.">
+                            @Html.DisplayFor(modelband => band.BandName)
+                        </a>
+                </td>
+                
+                <td>
+                        <a asp-controller="Bands" asp-action="Details" asp-route-id="@band.Genre">
+                            @Html.DisplayFor(modelband => band.Genre)
+                        </a>       
+                </td>
+                    <td>
+                        <a asp-controller="Bands" asp-action="Details" asp-route-id="@band.BandSize">
+                            @Html.DisplayFor(modelband => band.BandSize)
+                        </a>
+                    </td>
+                    <td>
+                        <a asp-controller="Bands" asp-action="Details" asp-route-id="@band.Experience">
+                            @Html.DisplayFor(modelband => band.Experience)
+                        </a>
+                    </td>
+                    <td>
+                        @*<a asp-controller="Bands" asp-action="Details" asp-route-id="@band.BandMembers">
+                            @Html.DisplayFor(modelband => band.BandMembers)
+                        </a>*@
+                    </td>
 
 
-<h2> all the bands
-    </h2>
+                   
+                   
+            </tr>
+        }
+    </tbody>
+</table>
 
-@foreach(var band in Model)
-{
-    <h1>@band.BandName</h1>
-    <H1>@band.BandMembers</H1>
-}   
+
+
+
+
+
+
+
+

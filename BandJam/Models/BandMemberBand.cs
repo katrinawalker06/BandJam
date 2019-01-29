@@ -8,9 +8,9 @@ namespace BandJam.Models
     {
         public class BandMemberBand
         {
+            [Key]
             public int BandMemberBandId { get; set; }
             public int BandMemberId { get; set; }
-            [Required]
             public BandMember BandMember { get; set; }
             public int BandId { get; set; }
             public Band Band { get; set; }

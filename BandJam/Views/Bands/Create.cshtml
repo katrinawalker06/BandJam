@@ -18,11 +18,11 @@
                 <input asp-for="BandName" class="form-control" />
                 <span asp-validation-for="BandName" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="Id" class="control-label"></label>
                 <input asp-for="Id" class="form-control" />
                 <span asp-validation-for="Id" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <label asp-for="Genre" class="control-label"></label>
                 <input asp-for="Genre" class="form-control" />
@@ -33,11 +33,16 @@
                 <input asp-for="BandSize" class="form-control" />
                 <span asp-validation-for="BandSize" class="text-danger"></span>
             </div>
-           
+
             <div class="form-group">
                 <label asp-for="Experience" class="control-label"></label>
                 <input asp-for="Experience" class="form-control" />
                 <span asp-validation-for="Experience" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BandMembers" class="control-label"></label>
+                <input asp-for="BandMembers" class="form-control" />
+                <span asp-validation-for="BandMembers" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Bio" class="control-label"></label>
@@ -59,4 +64,30 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+@*@model IEnumerable<Band>
+    @{
+        ViewData["Title"] = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
 
+    }
+
+
+    <h2>
+        all the bands
+    </h2>
+
+    @foreach (var band in Model)
+    {<table>
+            <tr>
+                <th>Band Name</th>
+                <th>Genre</th>
+                <th>Band Size</th>
+                <th>Bio Experience</th>
+            </tr>
+            <tr>
+                <th>@band.BandName</th>
+                <th>@band.Genre</th>
+                <th>@band.BandSize</th>
+                <th>@band.Bio</th>
+            </tr>
+        </table>*@

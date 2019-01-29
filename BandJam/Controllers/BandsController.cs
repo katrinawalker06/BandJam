@@ -10,10 +10,11 @@ using System.Web;
 using Microsoft.AspNetCore.Authorization;
 using BandJam.Data;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
 
 namespace BandJam.Controllers
 {
-    [BindRequired] 
+    [BindRequired]
     public class BandsController : Controller
     {
         private ApplicationDbContext _context { get; set; }
@@ -40,47 +41,70 @@ namespace BandJam.Controllers
 
         [HttpPost]
 
-        public ActionResult Create( Band band)
+        public ActionResult Create([Bind("Id, BandName, Genre, BandSize, Experience, BandMembers, Bio, Email")] Band band)
         {
             if (ModelState.IsValid)
             {
-                _context.Bands.Add(band);
+                _context.Add(band);
                 _context.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
 
             return View(band);
         }
-
-        // GET: Band/Edit/
-        public ActionResult Edit(int? id)
+        
+        public ActionResult Details(int? id)
         {
-            if (id == null)
-            {
-                return BadRequest();
-            }
-            Band band = _context.Bands.Find(id);
-            if (band == null)
-            {
-                return NotFound();
-            }
+
+          
+            Band band = _context.Bands.SingleOrDefault(x=> x.Id == id.Value);
+            
+
+            return View(band);
+        }
+
+        //[HttpPost]
+        //public IActionResult Details([Bind("id, BandName, Genre, Bandsize, Experience, BandMembers, Bio, Email")] Band band)
+        //{
+
+        //    return View("Details");
+        //}
+
+    // GET: Band/Edit/
+    public ActionResult Edit(int? id)
+        {
+            Band band = _context.Bands.SingleOrDefault(x => x.Id == id.Value);
+
             return View(band);
         }
         //Post: Band/Edit
         [HttpPost]
-        public ActionResult Edit( Band band)
+        public ActionResult Edit([Bind("Id, BandName, Genre, BandSize, Experience, BandMembers, Bio, Email")] Band band)
 
         {
+            {
+                if (ModelState.IsValid)
+                    
+                _context.Bands.Update(band);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
-            return View();
+            
         }
+        [HttpGet]
+        public ActionResult Delete(int? id)
+        {
+            Band band = _context.Bands.SingleOrDefault(x => x.Id == id.Value);
 
+            return View(band);
+        }
         [HttpPost]
         public IActionResult Delete(int id)
         {
             Band band = _context.Bands.Find(id);
-            _context.Bands.Remove(band);
-            _context.SaveChanges();
+                _context.Remove(band);
+                _context.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -94,5 +118,5 @@ namespace BandJam.Controllers
         }
     }
 }
-//[Bind(Include = "ID,BandName,Genre,Bandsize,Experience,BandMembers,Bio,Email")]
+//[Bind(ID,BandName,Genre,Bandsize,Experience,BandMembers,Bio,Email)]
 //[Bind(Include = "ID,BandName,Genre,Bandsize,Experience,BandMembers,Bio,Email")] 

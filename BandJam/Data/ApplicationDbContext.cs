@@ -9,11 +9,17 @@ namespace BandJam.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+            Database.EnsureCreated();
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<BandMemberBand>()
+                .HasKey(t => new { t.BandId, t.BandMemberId });
+
             base.OnModelCreating(builder);
+
         }
+
         public DbSet<Band> Bands { get; set; }
         public DbSet<BandMember> BandMembers { get; set; }
         public DbSet<Reservation> Reservations { get; set; }

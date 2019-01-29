@@ -4,14 +4,16 @@ using BandJam.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace BandJam.Data.Migrations
+namespace BandJam.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190129004429_[bandmemberlink]")]
+    partial class bandmemberlink
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,8 +52,6 @@ namespace BandJam.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("BandId");
-
                     b.Property<string>("BandName");
 
                     b.Property<string>("FirstName");
@@ -61,8 +61,6 @@ namespace BandJam.Data.Migrations
                     b.Property<string>("LastName");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BandId");
 
                     b.ToTable("BandMembers");
                 });
@@ -266,13 +264,6 @@ namespace BandJam.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("BandJam.Models.BandMember", b =>
-                {
-                    b.HasOne("BandJam.Models.Band", "Band")
-                        .WithMany()
-                        .HasForeignKey("BandId");
                 });
 
             modelBuilder.Entity("BandJam.Models.BandMemberBand", b =>

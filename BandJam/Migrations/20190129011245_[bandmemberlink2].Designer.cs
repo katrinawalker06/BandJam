@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace BandJam.Data.Migrations
+namespace BandJam.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190123000115_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20190129011245_[bandmemberlink2]")]
+    partial class bandmemberlink2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,34 +27,21 @@ namespace BandJam.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("BandMemberId");
-
-                    b.Property<string>("BandMembers")
-                        .IsRequired();
-
-                    b.Property<string>("BandName")
-                        .IsRequired();
+                    b.Property<string>("BandName");
 
                     b.Property<int>("BandSize");
 
-                    b.Property<string>("Bio")
-                        .IsRequired();
+                    b.Property<string>("Bio");
 
-                    b.Property<string>("Email")
-                        .IsRequired();
+                    b.Property<string>("Email");
 
-                    b.Property<string>("Experience")
-                        .IsRequired();
+                    b.Property<string>("Experience");
 
-                    b.Property<string>("Genre")
-                        .IsRequired();
+                    b.Property<string>("Genre");
 
-                    b.Property<string>("RequestId")
-                        .IsRequired();
+                    b.Property<string>("RequestId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BandMemberId");
 
                     b.ToTable("Bands");
                 });
@@ -65,18 +52,38 @@ namespace BandJam.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("FirstName")
-                        .IsRequired();
+                    b.Property<int?>("BandId");
 
-                    b.Property<string>("Instrument")
-                        .IsRequired();
+                    b.Property<string>("BandName");
 
-                    b.Property<string>("LastName")
-                        .IsRequired();
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("Instrument");
+
+                    b.Property<string>("LastName");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BandId");
+
                     b.ToTable("BandMembers");
+                });
+
+            modelBuilder.Entity("BandJam.Models.BandMemberBand", b =>
+                {
+                    b.Property<int>("BandId");
+
+                    b.Property<int>("BandMemberId");
+
+                    b.Property<int>("BandMemberBandId");
+
+                    b.HasKey("BandId", "BandMemberId");
+
+                    b.HasAlternateKey("BandMemberBandId");
+
+                    b.HasIndex("BandMemberId");
+
+                    b.ToTable("BandMemberBands");
                 });
 
             modelBuilder.Entity("BandJam.Models.Reservation", b =>
@@ -263,11 +270,24 @@ namespace BandJam.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("BandJam.Models.Band", b =>
+            modelBuilder.Entity("BandJam.Models.BandMember", b =>
                 {
-                    b.HasOne("BandJam.Models.BandMember")
-                        .WithMany("Bands")
-                        .HasForeignKey("BandMemberId");
+                    b.HasOne("BandJam.Models.Band", "Band")
+                        .WithMany()
+                        .HasForeignKey("BandId");
+                });
+
+            modelBuilder.Entity("BandJam.Models.BandMemberBand", b =>
+                {
+                    b.HasOne("BandJam.Models.Band", "Band")
+                        .WithMany("BandMemberBands")
+                        .HasForeignKey("BandId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("BandJam.Models.BandMember", "BandMember")
+                        .WithMany("BandMemberBands")
+                        .HasForeignKey("BandMemberId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("BandJam.Models.Reservation", b =>

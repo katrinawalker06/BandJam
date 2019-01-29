@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace BandJam.Models
 {
     public class Reservation
-    {
+    {   
         public int Id { get; set; }
         public DateTime ReservationTime { get; set; }
         public string ReservationTitle { get; set; }

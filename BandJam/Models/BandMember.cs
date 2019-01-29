@@ -8,14 +8,20 @@ namespace BandJam.Models
 {
     public class BandMember
     {
+        [Key]
         public int Id { get; set; }
-        [Required]
+
         public string FirstName { get; set; }
-        [Required]
+
         public string LastName { get; set; }
-        [Required]
+
         public string Instrument { get; set; }
 
-        public virtual ICollection<Band> Bands { get; set; }
+        public string BandName { get; set; }
+
+        public ICollection<BandMemberBand> BandMemberBands { get; set; }
+
+        public virtual Band Band { get; set; } 
+
     }
 }
