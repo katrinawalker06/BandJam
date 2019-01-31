@@ -26,10 +26,16 @@ namespace BandJam.Controllers
 
         public IActionResult Index()
         {
-            var bands = _context.Bands;
+            band.BandMembers = (from bmb in _context.BandMemberBands
+                                join bm in _context.BandMembers on bmb.BandMemberId equals bm.Id
+                                where bmb.BandId == id.Value
+                                select bm).ToList();
+            {
+                var bands = _context.Bands;
 
-            return View(bands);
+                return View(bands);
 
+            }
         }
 
         public ActionResult Create()
@@ -41,8 +47,12 @@ namespace BandJam.Controllers
 
         [HttpPost]
 
-        public ActionResult Create([Bind("Id, BandName, Genre, BandSize, Experience, BandMembers, Bio, Email")] Band band)
+        public ActionResult Create([Bind("id, BandName, Genre, BandSize, Experience, BandMembers, Bio, Email")] Band band)
         {
+            band.BandMembers = (from bmb in _context.BandMemberBands
+                                join bm in _context.BandMembers on bmb.BandMemberId equals bm.Id
+                                where bmb.BandId == id.Value
+                                select bm).ToList();
             if (ModelState.IsValid)
             {
                 _context.Add(band);
@@ -55,13 +65,15 @@ namespace BandJam.Controllers
         
         public ActionResult Details(int? id)
         {
+            Band band = _context.Bands.SingleOrDefault(x => x.Id == id.Value);
+            band.BandMembers = (from bmb in _context.BandMemberBands
+                join bm in _context.BandMembers on bmb.BandMemberId equals bm.Id
+                where bmb.BandId == id.Value
+                    select bm).ToList();
 
-          
-            Band band = _context.Bands.SingleOrDefault(x=> x.Id == id.Value);
-            
-
-            return View(band);
-        }
+                return View(band);
+            }
+                       
 
         //[HttpPost]
         //public IActionResult Details([Bind("id, BandName, Genre, Bandsize, Experience, BandMembers, Bio, Email")] Band band)
@@ -71,17 +83,26 @@ namespace BandJam.Controllers
         //}
 
     // GET: Band/Edit/
+
     public ActionResult Edit(int? id)
         {
             Band band = _context.Bands.SingleOrDefault(x => x.Id == id.Value);
+            band.BandMembers = (from bmb in _context.BandMemberBands
+                                join bm in _context.BandMembers on bmb.BandMemberId equals bm.Id
+                                where bmb.BandId == id.Value
+                                select bm).ToList();
 
             return View(band);
         }
         //Post: Band/Edit
         [HttpPost]
-        public ActionResult Edit([Bind("Id, BandName, Genre, BandSize, Experience, BandMembers, Bio, Email")] Band band)
+        public ActionResult Edit([Bind("id, BandName, Genre, BandSize, Experience, BandMembers, Bio, Email")] Band band)
 
         {
+            band.BandMembers = (from bmb in _context.BandMemberBands
+                                join bm in _context.BandMembers on bmb.BandMemberId equals bm.Id
+                                where bmb.BandId == id.Value
+                                select bm).ToList();
             {
                 if (ModelState.IsValid)
                     
@@ -95,6 +116,13 @@ namespace BandJam.Controllers
         [HttpGet]
         public ActionResult Delete(int? id)
         {
+            {
+                band.BandMembers = (from bmb in _context.BandMemberBands
+                                    join bm in _context.BandMembers on bmb.BandMemberId equals bm.Id
+                                    where bmb.BandId == id.Value
+                                    select bm).ToList();
+            }
+            
             Band band = _context.Bands.SingleOrDefault(x => x.Id == id.Value);
 
             return View(band);
@@ -102,6 +130,11 @@ namespace BandJam.Controllers
         [HttpPost]
         public IActionResult Delete(int id)
         {
+            band.BandMembers = (from bmb in _context.BandMemberBands
+                                join bm in _context.BandMembers on bmb.BandMemberId equals bm.Id
+                                where bmb.BandId == id.Value
+                                select bm).ToList();
+
             Band band = _context.Bands.Find(id);
                 _context.Remove(band);
                 _context.SaveChanges();

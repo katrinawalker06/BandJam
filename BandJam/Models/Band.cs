@@ -32,9 +32,9 @@ namespace BandJam.Models
        
 
     [NotMapped]
-        public ICollection<BandMember> BandMembers { get; set; }
+        public IList<BandMember> BandMembers { get; set; }
 
-        public ICollection<BandMemberBand> BandMemberBands { get; set; }
+        public IList<BandMemberBand> BandMemberBands { get; set; }
         public ICollection<Reservation> Reservations { get; set; }
        
 
