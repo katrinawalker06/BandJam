@@ -137,17 +137,19 @@
             <td>@Reservation.ReservationTitle</td>
             <td>@Reservation.Location</td>
         </tr>
-    }
-</table>*@
+    }*@
+</table>
+        
+      
 
-@*@if (BandMember.band Count == 0)
+@*if (BandMember.band Count == 0)
     {
     <p>No Members yet!</p>
-    }*@
+    }
 
 
 
-@*<div>
+<div>
         @Model.BandName
         @foreach ( var band in Model)
         {
