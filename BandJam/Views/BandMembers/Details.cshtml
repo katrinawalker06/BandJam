@@ -29,7 +29,13 @@
         <dd>
             @Html.DisplayFor(model => model.Instrument)
         </dd>
+        <dd>
+            <a asp-controller="Bands" asp-action="Details" asp-route-id="@Model.Id" title="Go to Band details.">
+                @Html.DisplayFor(model => Model.Band.BandName)
+            </a>
+        </dd>
         <dt>
+
             @Html.DisplayNameFor(model => model.BandName)
         </dt>
         <dd>

@@ -17,7 +17,7 @@
         <dd>
             @Html.DisplayFor(model => model.BandName)
         </dd>
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.RequestId)
         </dt>
         <dd>
@@ -52,7 +52,7 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Bio)
-        </dd>
+        </dd>*@
         <dt>
             @Html.DisplayNameFor(model => model.Email)
         </dt>
@@ -62,6 +62,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-controller="Reservation" asp-action="Edit" asp-route-id="@Model.Id">Edit Reseration</a> |
     <a asp-action="Index">Back to List</a>
 </div>

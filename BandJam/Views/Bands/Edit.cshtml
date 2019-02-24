@@ -45,7 +45,15 @@
             </div>
             <div class="form-group">
                 <label asp-for="BandMembers" class="control-label"></label>
-                <input asp-for="BandMembers" class="form-control" />
+                @foreach (var BandMember in Model.BandMembers)
+                {
+                <div>
+                    @BandMember.FirstName
+                    @BandMember.LastName
+                    @BandMember.Instrument
+                </div>
+
+                }
                 <span asp-validation-for="BandMembers" class="text-danger"></span>
             </div>
             <div class="form-group">

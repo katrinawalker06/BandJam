@@ -26,13 +26,17 @@ namespace BandJam.Models
 
         public string Bio { get; set; }
 
+        //public string BandMember { get; set; }
+
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-       
 
-    [NotMapped]
-        public IList<BandMember> BandMembers { get; set; }
+
+        
+        public IEnumerable<BandMember>BandMembers { get; set; }
+
+        //public IList<BandMember> BandMembers { get; set; }
 
         public IList<BandMemberBand> BandMemberBands { get; set; }
         public ICollection<Reservation> Reservations { get; set; }

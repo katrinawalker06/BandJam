@@ -58,6 +58,9 @@ namespace BandJam.Controllers
         {
             if (ModelState.IsValid)
             {
+              var bandObject =  _context.Bands.Where(band => band.BandName == bandMember.BandName).FirstOrDefault();
+                bandMember.Band = new Band();
+                bandMember.Band.Id = bandObject.Id;
                 _context.Add(bandMember);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
